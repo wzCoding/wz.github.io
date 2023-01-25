@@ -7,12 +7,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    #all-map {
+        width: 80vw;
+        height: 80vh;
+        position: relative;
+        border: 2px solid #000;
+        border-radius: 5px;
+    }
+</style>
 
 <body>
-    <p>welcome to my Github !......</p>
+    <div class="map" id="all-map"></div>
 </body>
+<!-- <script type="text/javascript" src="https://api.map.baidu.com/api?v=3.0&ak=e7u9uASpgp5TtGFiuRErUM0XsGYO5O9c"></script>
 <script>
-    
-</script>
+    var map = new BMap.Map("all-map");          // 创建地图实例 
+    var point = new BMap.Point(116.404, 39.915);  // 创建点坐标 
+    map.centerAndZoom(point, 15);     
+</script> -->
 
 </html>
