@@ -42,5 +42,6 @@ export default {
     cursor: pointer;
     text-decoration: underline;
     position: absolute;
+    color:#fff;
 }
 </style>

@@ -1,7 +1,7 @@
 import { createCamera } from "./components/camera";
 import { createScene } from "./components/scene";
 import { createRenderer } from "./components/renderer";
-
+import { createLights } from "./components/lights";
 import { createCube } from "./components/cube";
 import { Resizer } from "./systems/resizer";
 
@@ -13,9 +13,13 @@ class Background {
         scene = createScene();
         renderer = createRenderer();
         container.append(renderer.domElement);
+        
+        const cube = createCube(1, 1, 1);
+        const light = createLights();
+        scene.add(cube,light);
 
-        this.cube = createCube(1, 1, 1);
-        scene.add(this.cube);
+        this.cube = cube;
+
         const resizer = new Resizer(container, camera, renderer);
     }
     render() {
