@@ -1,32 +1,49 @@
 <template>
     <div id="bg-container">
-        <div @click="back" class="back">back</div>
+        <el-button-group class="btn-group">
+            <el-button type="primary" icon="el-icon-arrow-left" @click="back">back</el-button>
+            <el-button type="primary" @click="startAnimate">{{ dynamicText }}<i :class="dynamicIcon"
+                    class="dynamic-icon"></i></el-button>
+        </el-button-group>
+
     </div>
 </template>
 <script>
-import { Background } from "../background/background"
+import { World } from "../world/world"
 export default {
     name: "navbar",
     data() {
         return {
-           bg:null
+            bg: null,
+            animate: true,
+            dynamicText: "start",
+            dynamicIcon: "el-icon-video-pause"
         }
     },
     mounted() {
-        this.init()
-        this.animate()
+        this.init().catch(err => {console.log(err)})
+        //this.startAnimate()
+        console.log(this.bg)
     },
+    destroyed() { this.bg.stop() },
     methods: {
         back() {
-            this.$router.push("/")
+            this.$router.push("/");
         },
-        init() {
-            const container = document.querySelector("#bg-container")
-            this.bg = new Background(container);
+        async init() {
+            const container = document.querySelector("#bg-container");
+            this.bg = new World(container);
+            //this.bg.render();
+
+            await this.bg.init();
+
+            this.bg.start();
         },
-        animate(){
-           requestAnimationFrame(this.animate)
-           this.bg.render()
+        startAnimate() {
+            this.dynamicText = this.animate ? "stop" : "start";
+            this.dynamicIcon = this.animate ? "el-icon-video-play" : "el-icon-video-pause";
+            // this.bg[this.animate ? "start" : "stop"]();
+            // this.animate = !this.animate;
         }
     }
 }
@@ -38,10 +55,14 @@ export default {
     overflow: hidden;
 }
 
-.back {
-    cursor: pointer;
-    text-decoration: underline;
+.btn-group {
     position: absolute;
-    color:#fff;
+    color: #fff;
+}
+
+.dynamic-icon {
+    left: 3px;
+    top: 1px;
+    position: relative;
 }
 </style>

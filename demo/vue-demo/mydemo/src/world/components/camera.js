@@ -12,7 +12,7 @@ function createCamera(
 
     const camera = new PerspectiveCamera(fov, aspect, near, far);
     camera.position.set(x, y, z);
-
+    
     return camera;
 }
 export { createCamera }

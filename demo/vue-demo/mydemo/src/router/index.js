@@ -9,12 +9,17 @@ export default new Router({
     {
       path: '/',
       name: 'background',
-      component: () => import("@/view/background")
+      component: () => import("@/components/background")
     },
     {
-      path:"/navbar",
-      name:"navbar",
-      component: () => import("@/components/nav")
-    }
+      path: '/sea',
+      name: 'sea',
+      component: () => import("@/components/sea")
+    },
+    // {
+    //   path:"/navbar",
+    //   name:"navbar",
+    //   component: () => import("@/components/nav")
+    // }
   ]
 })
