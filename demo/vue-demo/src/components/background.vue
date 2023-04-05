@@ -3,8 +3,10 @@
         <div class="swiper swiper-container">
             <div class="swiper-wrapper">
                 <div v-for="bg in bgItemList" :key="bg.id" class="swiper-slide">
-                    <div v-for="(styleObj, i) in bg.itemList" :key="styleObj.id" :style="styleObj" :class="bg.itemClass[i]">
-                    </div>
+                    <!-- <div v-for="(styleObj, i) in bg.itemList" :key="styleObj.id" :style="styleObj" :class="bg.itemClass[i]">
+                        
+                    </div> -->
+                    {{ `slide${bg.id}` }}
                 </div>
             </div>
             <div class="swiper-pagination"></div>
@@ -78,9 +80,10 @@ export default {
         }
         const that = this;
         const swiper = new Swiper(".swiper-container", {
-            effect: 'fade',
+            //effect: 'fade',
             loop: true, // 循环模式
             //分页器
+            direction:'vertical',
             pagination: {
                 el: '.swiper-pagination',
                 clickable: true,
@@ -88,7 +91,7 @@ export default {
             on: {
                 slideChange: function () {
                     const index = this.activeIndex - 1
-                    that.backgroundChange(index)
+                    //that.backgroundChange(index)
                 },
             },
         })
@@ -149,10 +152,12 @@ export default {
 }
 
 .swiper {
-    width: 100%;
-    height: 100%;
+    width:300px;
+    height: 400px;
 }
-
+.swiper-slide{
+    text-align: center;
+}
 .background-box {
     width: 100%;
     height: 100%;

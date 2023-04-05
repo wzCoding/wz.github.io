@@ -8,9 +8,14 @@ export default new Router({
   mode:"hash",
   routes: [
     {
-      path: '/',
+      path: '*',
       name: 'index',
       component: ()=> import("@/views/index")
-    }
+    },
+    {
+      path: '/htmlist',
+      name: 'htmlist',
+      component: ()=> import("@/views/htmlist")
+    },
   ]
 })

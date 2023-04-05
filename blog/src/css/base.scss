@@ -1,0 +1,89 @@
+$font-family: "Arial Negreta", "Arial Normal", "Arial";
+$font-color: #333;
+
+$backgund-color: #fff;
+$border-color: #e6e6e6;
+$active-color: #f23051;
+
+@mixin border($dir, $color: $border-color, $width: 1px) {
+    $dirs: top, right, bottom, left;
+    @if $dir == all {
+        border: $width solid $color;
+    } @else {
+        @each $d in $dirs {
+            @if $dir == $d {
+                border-#{$dir}: $width solid $color;
+            }
+        }
+    }
+}
+
+@mixin flex($x, $y) {
+    display: flex;
+    justify-content: $x;
+    align-items: $y;
+}
+
+.section {
+    position: fixed;
+    top: 30px;
+    left: 30px;
+    width: calc(100% - 60px);
+    height: calc(100% - 60px);
+    background: #fff;
+    -webkit-box-shadow: 0px 0px 35px -5px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 0px 35px -5px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    overflow: hidden !important;
+    z-index: 11;
+    &:before {
+        content: "";
+        position: absolute;
+        bottom: -300px;
+        left: -200px;
+        width: 700px;
+        height: 700px;
+        background: -webkit-radial-gradient(rgba(230, 18, 188, 0.2), transparent 65%);
+        background: -o-radial-gradient(rgba(230, 18, 188, 0.2), transparent 65%);
+        background: radial-gradient(rgba(230, 18, 188, 0.2), transparent 65%);
+        border-radius: 50%;
+        z-index: -1;
+    }
+    &:after {
+        content: "";
+        position: absolute;
+        top: -300px;
+        right: -200px;
+        width: 700px;
+        height: 700px;
+        background: -webkit-radial-gradient(rgba(10, 27, 216, 0.2), transparent 65%);
+        background: -o-radial-gradient(rgba(10, 27, 216, 0.2), transparent 65%);
+        background: radial-gradient(rgba(10, 27, 216, 0.2), transparent 65%);
+        border-radius: 50%;
+        z-index: -1;
+    }
+}
+.section.active {
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+}
+.section-close-btn {
+    position: fixed;
+    top: 0;
+    right: 25px;
+    padding: 0;
+    width: 35px;
+    height: 40px;
+    line-height: 20px;
+    background: -webkit-linear-gradient(315deg, #CB26B6, #F8B127);
+    background: -o-linear-gradient(315deg, #CB26B6, #F8B127);
+    background: linear-gradient(135deg, #CB26B6, #F8B127);
+    color: #fff;
+    font-size: 20px;
+    border: 0;
+    border-radius: 0 0 15px 15px;
+    -webkit-box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.4);
+    box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.4);
+    z-index: 111;
+  }

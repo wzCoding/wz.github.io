@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+
+</style>
+
+<body>
+</body>
+<script type="module">
+    function debounce(func, delay) {
+        let timer
+        return function () {
+
+            const that = this
+            const args = arguments
+
+            clearTimeout(timer)
+            timer = setTimeout(() => {
+                console.log("事件触发了！！！")
+                func.call(that, args)
+            }, delay)
+        }
+    }
+    //节流函数
+    function throttle(func, delay) {
+        let timer
+
+        return function () {
+
+            const that = this
+            const args = arguments
+            
+            if (timer) return
+            timer = setTimeout(() => {
+                func.call(that, args)
+                timer = null
+            }, delay)
+        }
+    }
+
+    const debounceLog = debounce(log,2000)
+    window.addEventListener("resize",function(e){
+        debounceLog(1,2,3)
+    })
+    function log(e){
+        console.log(e)
+        console.log("触发了！！！")
+    }
+</script>
+
+</html>
