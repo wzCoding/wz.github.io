@@ -15,12 +15,10 @@
     </div>
 </template>
 <script>
-// import search from '../search.vue';
+
 export default {
     name: "top",
-    // components: {
-    //     search
-    // },
+    
     props: {
         contents: {
             type: Array,
